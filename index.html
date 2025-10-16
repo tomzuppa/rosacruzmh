@@ -341,6 +341,9 @@
             text-align: center;
             padding: 60px 20px;
             margin-bottom: 40px;
+
+            /* necesario para ubicar el reproductor dentro */
+            position: relative;
         }
 
         .main-title {
@@ -369,6 +372,21 @@
             margin: 30px auto;
         }
 
+        /* ===== Reproductor discreto junto al título ===== */
+        .audio-inline {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            z-index: 20;
+        }
+        .audio-inline audio {
+            width: 180px;
+            height: 26px;
+            opacity: 0.65;
+            transition: opacity .2s ease;
+        }
+        .audio-inline audio:hover { opacity: 1; }
+
         @media (max-width: 768px) {
             .papyrus {
                 padding: 40px 25px;
@@ -388,6 +406,16 @@
             .central-star {
                 width: 100px;
                 height: 100px;
+            }
+            /* en móviles, que el reproductor baje bajo el título */
+            .audio-inline {
+                position: static;
+                margin: 8px auto 0;
+            }
+            .audio-inline audio {
+                width: 90%;
+                max-width: 260px;
+                height: 28px;
             }
         }
     </style>
@@ -416,46 +444,26 @@
             <circle cx="50" cy="50" r="5" fill="#ffd700"/>
             
             <!-- Rosas blancas alrededor -->
-            <!-- Rosa superior -->
             <circle cx="50" cy="20" r="8" fill="white" opacity="0.9"/>
-            <circle cx="50" cy="20" r="5" fill="#f5f5f5" opacity="0.8"/>
-            <circle cx="50" cy="20" r="2" fill="#e0e0e0"/>
-            
-            <!-- Rosa inferior -->
             <circle cx="50" cy="80" r="8" fill="white" opacity="0.9"/>
-            <circle cx="50" cy="80" r="5" fill="#f5f5f5" opacity="0.8"/>
-            <circle cx="50" cy="80" r="2" fill="#e0e0e0"/>
-            
-            <!-- Rosa izquierda -->
             <circle cx="20" cy="50" r="8" fill="white" opacity="0.9"/>
-            <circle cx="20" cy="50" r="5" fill="#f5f5f5" opacity="0.8"/>
-            <circle cx="20" cy="50" r="2" fill="#e0e0e0"/>
-            
-            <!-- Rosa derecha -->
             <circle cx="80" cy="50" r="8" fill="white" opacity="0.9"/>
-            <circle cx="80" cy="50" r="5" fill="#f5f5f5" opacity="0.8"/>
-            <circle cx="80" cy="50" r="2" fill="#e0e0e0"/>
-            
-            <!-- Rosas en las diagonales -->
-            <!-- Superior izquierda -->
             <circle cx="30" cy="30" r="7" fill="white" opacity="0.85"/>
-            <circle cx="30" cy="30" r="4" fill="#f5f5f5" opacity="0.75"/>
-            
-            <!-- Superior derecha -->
             <circle cx="70" cy="30" r="7" fill="white" opacity="0.85"/>
-            <circle cx="70" cy="30" r="4" fill="#f5f5f5" opacity="0.75"/>
-            
-            <!-- Inferior izquierda -->
             <circle cx="30" cy="70" r="7" fill="white" opacity="0.85"/>
-            <circle cx="30" cy="70" r="4" fill="#f5f5f5" opacity="0.75"/>
-            
-            <!-- Inferior derecha -->
             <circle cx="70" cy="70" r="7" fill="white" opacity="0.85"/>
-            <circle cx="70" cy="70" r="4" fill="#f5f5f5" opacity="0.75"/>
         </svg>
 
     <div class="container">
         <div class="header">
+            <!-- Reproductor discreto a la derecha del título -->
+            <div class="audio-inline">
+              <audio id="bgAudio" src="padrenuestroarameo.mp3"
+                     controls preload="metadata"
+                     controlsList="nodownload noplaybackrate">
+              </audio>
+            </div>
+
             <h1 class="main-title">Abwoon d'bwashmaya</h1>
             <div class="divider"></div>
             <p class="subtitle">El Padre Nuestro en Arameo</p>
@@ -464,7 +472,8 @@
 
         <div class="papyrus">
             <div class="papyrus-glow" id="papyrusGlow"></div>
-            <!-- Verso 1 -->
+
+            <!-- Versos (sin cambios) -->
             <div class="verse-section">
                 <span class="verse-number">1</span>
                 <h2 class="verse-aramaic">Abwoon d'bwashmaya</h2>
@@ -474,7 +483,6 @@
                 </div>
             </div>
 
-            <!-- Verso 2 -->
             <div class="verse-section">
                 <span class="verse-number">2</span>
                 <h2 class="verse-aramaic">Nethqadash shmakh</h2>
@@ -484,7 +492,6 @@
                 </div>
             </div>
 
-            <!-- Verso 3 -->
             <div class="verse-section">
                 <span class="verse-number">3</span>
                 <h2 class="verse-aramaic">Teytey malkuthakh</h2>
@@ -494,7 +501,6 @@
                 </div>
             </div>
 
-            <!-- Verso 4 -->
             <div class="verse-section">
                 <span class="verse-number">4</span>
                 <h2 class="verse-aramaic">Nehwey sebyanach aykanna d'bwashmaya aph b'arha</h2>
@@ -504,7 +510,6 @@
                 </div>
             </div>
 
-            <!-- Verso 5 -->
             <div class="verse-section">
                 <span class="verse-number">5</span>
                 <h2 class="verse-aramaic">Habwlan lachma d'sunqanan yaomana</h2>
@@ -514,7 +519,6 @@
                 </div>
             </div>
 
-            <!-- Verso 6 -->
             <div class="verse-section">
                 <span class="verse-number">6</span>
                 <h2 class="verse-aramaic">Washboqlan khaubayn aykana daph khnan shbwoqan l'khayyabayn</h2>
@@ -524,7 +528,6 @@
                 </div>
             </div>
 
-            <!-- Verso 7 -->
             <div class="verse-section">
                 <span class="verse-number">7</span>
                 <h2 class="verse-aramaic">Wela tahlan l'nesyuna — Ela patsan min bisha</h2>
@@ -534,7 +537,6 @@
                 </div>
             </div>
 
-            <!-- Verso 8 -->
             <div class="verse-section">
                 <span class="verse-number">8</span>
                 <h2 class="verse-aramaic">Metol dilakhie malkutha wahayla wateshbukhta l'ahlam almin</h2>
@@ -559,16 +561,13 @@
             star.style.left = Math.random() * 100 + '%';
             star.style.top = Math.random() * 100 + '%';
             star.style.animationDelay = `${Math.random() * 3}s, ${Math.random() * 30}s`;
-            
             starsContainer.appendChild(star);
         }
 
         // Animación del sol (estrella central) que se mueve conforme lees
-        window.addEventListener('scroll', (e) => {
+        window.addEventListener('scroll', () => {
             const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
             const centralStar = document.getElementById('centralStar');
-            
-            // Mover el sol hacia abajo conforme se scrollea
             const moveDistance = window.innerHeight * 2;
             const yOffset = scrollPercent * moveDistance;
             centralStar.style.transform = `translate(-50%, calc(-50% + ${yOffset}px))`;
@@ -587,7 +586,6 @@
 
         function updateIllumination() {
             const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-            
             lightOverlay.style.opacity = scrollPercent * 0.8;
             
             let maxIlluminationLevel = 0;
@@ -604,34 +602,21 @@
                     verse.classList.add('visible');
                 }
                 
-                // Detectar si es el verso 8 (último con Amén)
-                if (index === 7) {
-                    amenElement = verse;
-                }
+                if (index === 7) amenElement = verse;
                 
                 if (isInView) {
                     const verseNumber = index + 1;
-                    
-                    for (let i = 1; i <= 8; i++) {
-                        verse.classList.remove(`illuminated-${i}`);
-                    }
-                    
+                    for (let i = 1; i <= 8; i++) verse.classList.remove(`illuminated-${i}`);
                     verse.classList.add(`illuminated-${verseNumber}`);
-                    
-                    if (verseNumber > maxIlluminationLevel) {
-                        maxIlluminationLevel = verseNumber;
-                    }
+                    if (verseNumber > maxIlluminationLevel) maxIlluminationLevel = verseNumber;
                 } else {
-                    for (let i = 1; i <= 8; i++) {
-                        verse.classList.remove(`illuminated-${i}`);
-                    }
+                    for (let i = 1; i <= 8; i++) verse.classList.remove(`illuminated-${i}`);
                 }
             });
 
             const glowIntensity = Math.min(maxIlluminationLevel / 6, 1);
             papyrusGlow.style.opacity = glowIntensity;
             
-            // Iluminar completamente cuando se alcanza el Amén
             if (amenElement) {
                 const amenRect = amenElement.getBoundingClientRect();
                 const amenCenter = amenRect.top + amenRect.height / 2;
@@ -643,8 +628,6 @@
                     const centralStar = document.getElementById('centralStar');
                     const lightOverlayElement = document.getElementById('lightOverlay');
                     const energyLines = document.querySelectorAll('.energy-line');
-                    
-                    // Incrementar brillo conforme te acercas al Amén
                     const amenIntensity = Math.max(1 - (amenDistance / (window.innerHeight * 0.4)), 0);
                     
                     centralStar.style.boxShadow = `
@@ -666,9 +649,13 @@
         }
 
         window.addEventListener('load', updateIllumination);
-        setTimeout(() => {
-            updateIllumination();
-        }, 100);
+        setTimeout(updateIllumination, 100);
+
+        // Volumen inicial del audio
+        window.addEventListener('load', () => {
+            const a = document.getElementById('bgAudio');
+            if (a) a.volume = 0.8;
+        });
     </script>
 </body>
 </html>
