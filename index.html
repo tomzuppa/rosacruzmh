@@ -165,12 +165,10 @@
         }
 
         .rose-cross-wrap {
-            position: fixed;
-            top: 30px;
-            left: 50%;
-            transform: translateX(-50%);
+            position: relative;
             width: 80px;
             height: 80px;
+            margin: 0 auto 10px;
             z-index: 5;
         }
 
@@ -251,6 +249,7 @@
             box-shadow:
                 0 0 60px rgba(255, 215, 100, 0.6),
                 0 0 120px rgba(255, 235, 180, 0.4),
+                0 0 200px rgba(120, 60, 180, 0.12),
                 inset 0 0 100px rgba(255, 248, 220, 0.3);
         }
 
@@ -294,17 +293,37 @@
             z-index: 3;
         }
 
+        .sacred-image-wrap::before {
+            content: '';
+            position: absolute;
+            inset: -50px;
+            z-index: -1;
+            pointer-events: none;
+            filter: blur(24px);
+            background:
+                radial-gradient(ellipse at 35% 30%, rgba(212, 175, 55, 0.3), transparent 65%),
+                radial-gradient(ellipse at 68% 72%, rgba(120, 60, 180, 0.2), transparent 65%);
+        }
+
         .sacred-image {
             display: block;
             width: 100%;
             height: auto;
-            border: 2px solid rgba(212, 175, 55, 0.6);
             border-radius: 12px;
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.6),
-                0 0 40px rgba(212, 175, 55, 0.4),
-                inset 0 0 80px rgba(212, 175, 55, 0.08);
+            mask-image: radial-gradient(ellipse 62% 58% at center, black 45%, transparent 88%);
+            -webkit-mask-image: radial-gradient(ellipse 62% 58% at center, black 45%, transparent 88%);
+            filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.35));
             animation: fadeInImage 1.2s ease-out;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85em;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(212, 175, 55, 0.55);
+            margin-top: 16px;
         }
 
         @keyframes fadeInImage {
@@ -366,13 +385,13 @@
         .verse-section.illuminated-4::before {
             background: radial-gradient(circle, rgba(255, 225, 130, 0.45) 0%, transparent 70%);
             opacity: 0.65;
-            box-shadow: 0 0 80px rgba(255, 215, 100, 0.5);
+            box-shadow: 0 0 80px rgba(255, 215, 100, 0.5), 0 0 140px rgba(120, 60, 180, 0.15);
         }
 
         .verse-section.illuminated-5::before {
             background: radial-gradient(circle, rgba(255, 220, 110, 0.55) 0%, transparent 70%);
             opacity: 0.75;
-            box-shadow: 0 0 100px rgba(255, 215, 100, 0.6);
+            box-shadow: 0 0 100px rgba(255, 215, 100, 0.6), 0 0 160px rgba(120, 60, 180, 0.15);
         }
 
         .verse-section.illuminated-6::before {
@@ -659,41 +678,41 @@
     <div class="light-overlay" id="lightOverlay"></div>
     <div class="central-star" id="centralStar"></div>
 
-    <div class="rose-cross-wrap">
-        <div class="rose-halo"></div>
-        <svg class="rose-cross" viewBox="0 0 100 100" role="img" aria-label="Cruz Rosada, símbolo Rosacruz">
-            <defs>
-                <radialGradient id="roseGlow">
-                    <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:0.8" />
-                    <stop offset="100%" style="stop-color:#c41e3a;stop-opacity:1" />
-                </radialGradient>
-            </defs>
-            <!-- Cruz -->
-            <rect x="45" y="10" width="10" height="80" fill="#d4af37"/>
-            <rect x="10" y="45" width="80" height="10" fill="#d4af37"/>
-            <!-- Rosa central roja -->
-            <circle cx="50" cy="50" r="15" fill="url(#roseGlow)"/>
-            <circle cx="50" cy="50" r="10" fill="#ff1744" opacity="0.8"/>
-            <circle cx="50" cy="50" r="5" fill="#ffd700"/>
-
-            <!-- Rosas blancas alrededor -->
-            <circle cx="50" cy="20" r="8" fill="white" opacity="0.9"/>
-            <circle cx="50" cy="80" r="8" fill="white" opacity="0.9"/>
-            <circle cx="20" cy="50" r="8" fill="white" opacity="0.9"/>
-            <circle cx="80" cy="50" r="8" fill="white" opacity="0.9"/>
-            <circle cx="30" cy="30" r="7" fill="white" opacity="0.85"/>
-            <circle cx="70" cy="30" r="7" fill="white" opacity="0.85"/>
-            <circle cx="30" cy="70" r="7" fill="white" opacity="0.85"/>
-            <circle cx="70" cy="70" r="7" fill="white" opacity="0.85"/>
-        </svg>
-    </div>
-
     <div class="container">
         <div class="sacred-image-wrap">
             <img class="sacred-image" src="prayerOfCosmos.webp" alt="Ilustración sagrada: Santuario Interior" loading="lazy">
+            <p class="image-caption">Santuario Interior</p>
         </div>
 
         <div class="header">
+            <div class="rose-cross-wrap">
+                <div class="rose-halo"></div>
+                <svg class="rose-cross" viewBox="0 0 100 100" role="img" aria-label="Cruz Rosada, símbolo Rosacruz">
+                    <defs>
+                        <radialGradient id="roseGlow">
+                            <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#c41e3a;stop-opacity:1" />
+                        </radialGradient>
+                    </defs>
+                    <!-- Cruz -->
+                    <rect x="45" y="10" width="10" height="80" fill="#d4af37"/>
+                    <rect x="10" y="45" width="80" height="10" fill="#d4af37"/>
+                    <!-- Rosa central roja -->
+                    <circle cx="50" cy="50" r="15" fill="url(#roseGlow)"/>
+                    <circle cx="50" cy="50" r="10" fill="#ff1744" opacity="0.8"/>
+                    <circle cx="50" cy="50" r="5" fill="#ffd700"/>
+
+                    <!-- Rosas blancas alrededor -->
+                    <circle cx="50" cy="20" r="8" fill="white" opacity="0.9"/>
+                    <circle cx="50" cy="80" r="8" fill="white" opacity="0.9"/>
+                    <circle cx="20" cy="50" r="8" fill="white" opacity="0.9"/>
+                    <circle cx="80" cy="50" r="8" fill="white" opacity="0.9"/>
+                    <circle cx="30" cy="30" r="7" fill="white" opacity="0.85"/>
+                    <circle cx="70" cy="30" r="7" fill="white" opacity="0.85"/>
+                    <circle cx="30" cy="70" r="7" fill="white" opacity="0.85"/>
+                    <circle cx="70" cy="70" r="7" fill="white" opacity="0.85"/>
+                </svg>
+            </div>
             <h1 class="main-title" lang="arc">Abwoon d'bwashmaya</h1>
             <div class="divider"></div>
             <p class="subtitle">El Padre Nuestro en Arameo</p>
