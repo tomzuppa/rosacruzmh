@@ -285,58 +285,6 @@
         .corner-flourish.bl { bottom: 14px; left: 14px; }
         .corner-flourish.br { bottom: 14px; right: 14px; }
 
-        /* ===== Imagen sagrada ===== */
-        .sacred-image-wrap {
-            position: relative;
-            max-width: 700px;
-            margin: 60px auto 40px;
-            z-index: 3;
-        }
-
-        .sacred-image-wrap::before {
-            content: '';
-            position: absolute;
-            inset: -50px;
-            z-index: -1;
-            pointer-events: none;
-            filter: blur(24px);
-            background:
-                radial-gradient(ellipse at 35% 30%, rgba(212, 175, 55, 0.3), transparent 65%),
-                radial-gradient(ellipse at 68% 72%, rgba(120, 60, 180, 0.2), transparent 65%);
-        }
-
-        .sacred-image {
-            display: block;
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            mask-image: radial-gradient(ellipse 62% 58% at center, black 45%, transparent 88%);
-            -webkit-mask-image: radial-gradient(ellipse 62% 58% at center, black 45%, transparent 88%);
-            filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.35));
-            animation: fadeInImage 1.2s ease-out;
-        }
-
-        .image-caption {
-            text-align: center;
-            font-family: 'Cinzel', serif;
-            font-size: 0.85em;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: rgba(212, 175, 55, 0.55);
-            margin-top: 16px;
-        }
-
-        @keyframes fadeInImage {
-            from { opacity: 0; transform: translateY(30px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        @media (max-width: 768px) {
-            .sacred-image-wrap {
-                margin: 40px auto 30px;
-            }
-        }
-
         .verse-section {
             margin: 80px 0;
             opacity: 0;
@@ -679,10 +627,6 @@
     <div class="central-star" id="centralStar"></div>
 
     <div class="container">
-        <div class="sacred-image-wrap">
-            <img class="sacred-image" src="prayerOfCosmos.webp" alt="Ilustración sagrada: Santuario Interior" loading="lazy">
-            <p class="image-caption">Santuario Interior</p>
-        </div>
 
         <div class="header">
             <div class="rose-cross-wrap">
