@@ -414,7 +414,10 @@
   }
   window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
   window.addEventListener('resize', update);
-  window.addEventListener('load', update);
+  window.addEventListener('load', () => {
+    if (location.hash === '#amen') amen.scrollIntoView({ block: 'center' });
+    update();
+  });
   setTimeout(update, 80);
 
   // Reproductor
